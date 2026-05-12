@@ -1,0 +1,53 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: cloudconfigserver
+
+  servlet:
+    context-path: /
+
+  profiles:
+    active: git
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/srikanthsara/cloudconfigserver.git
+          default-label: main
+          clone-on-start: true
+
+          # Optional if private repository
+          #username: srikanthsara
+          #password: Harini@090320
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh
+
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  app:
+    name: Cloud Config Server
+    version: 1.0.0
+    description: Centralized Configuration Server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin123@localhost:8761/eureka/
+
+  instance:
+    prefer-ip-address: true
+
+logging:
+  level:
+    org.springframework.cloud.config: INFO
+    com.configserver: DEBUG

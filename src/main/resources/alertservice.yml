@@ -1,0 +1,14 @@
+server:
+  port: 9191
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/alertdb
+    username: alert
+    password: alert123
+
+alert:
+  max-retry-count: 5
+
+message:
+  greeting: Welcome Alert Service
